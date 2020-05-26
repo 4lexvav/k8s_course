@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+    name: web-dep
+    labels:
+        name: web
+        env: dev
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            name: web
+    template:
+        metadata:
+            labels:
+                name: web
+        spec:
+            containers:
+                - name: myweb
+                  image: nginx
+                  ports:
+                      - containerPort: 80
+                        name: http
+                        protocol: TCP
